@@ -35,6 +35,7 @@ class UsersController extends Controller
     /**
      * 创建用户
      * @param Request $request Http请求
+     *
      * @return void
      **/
     public function store(Request $request)
@@ -45,6 +46,13 @@ class UsersController extends Controller
             'password' => 'required|confirmed|min:6'
         ]);
 
-        retrun;
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password)
+        ]);
+
+        session()->flash('success', '欢迎，您将在这里开启一段新的旅程~');
+        return redirect()->route('users.show', [$user]);
     }
 }
