@@ -39,4 +39,14 @@ class SessionsController extends Controller
             return redirect()->back()->withInput();
         }
     }
+
+    /**
+     * 登出
+     *
+     * @return void
+    **/
+    public function destory()
+    {
+
+    }
 }
